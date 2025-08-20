@@ -1,0 +1,218 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@font-face {
+  font-family: 'Manrope';
+  src: url('../public/fonts/manrope/Manrope-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Manrope';
+  src: url('../public/fonts/manrope/Manrope-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Manrope';
+  src: url('../public/fonts/manrope/Manrope-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Manrope';
+  src: url('../public/fonts/manrope/Manrope-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Manrope';
+  src: url('../public/fonts/manrope/Manrope-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Manrope';
+  src: url('../public/fonts/manrope/Manrope-ExtraBold.ttf') format('truetype');
+  font-weight: 800;
+  font-style: normal;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+@layer base {
+  :root {
+      /* neutrals */
+    --bg: 253 244 220;   /* #FDF4DC (template-white) */
+    --fg: 18 18 18;      /* #121212 (template-black) */
+    --card: 255 255 255; /* #FFFFFF */
+    --muted: 236 234 228;/* ~#ECEAE4, subtle contrast on light */
+    --border: 218 214 205;/* ~#DAD6CD */
+    --page: 255 255 255;   /* light: #FFFFFF or tweak to taste */
+
+    /* brand / state (from your config) */
+    --accent: 255 186 33; /* #FFBA21 */
+    --accent-foreground: 18 18 18;  /* text on accent */
+    --success: 86 188 120;  /* #56BC78 */
+    --warning: 255 87 34;   /* #FF5722 */
+    --danger: 223 29 0;     /* #DF1D00 */
+
+    /* link/purple family (you already have) */
+    --link: 123 63 228;   /* #7B3FE4 */
+    --link-hover: 136 82 230; /* #8852E6 */
+  }
+
+  .dark {
+    --bg: 18 18 18;      /* #121212 */
+    --page: 44 44 44;      /* dark: #2C2C2C (your gray-600) */
+    --fg: 243 241 234;   /* #F3F1EA */
+    --card: 26 26 26;    /* #1A1A1A */
+    --muted: 36 36 36;   /* #242424 */
+    --border: 44 44 44;  /* #2C2C2C */
+
+    /* brand usually unchanged; tweak if needed for contrast */
+    --accent: 255 186 33;          /* #FFBA21 */
+    --accent-foreground: 18 18 18; /* stays dark text on yellow */
+    --success: 86 188 120;
+    --warning: 255 87 34;
+    --danger: 223 29 0;
+
+    --link: 136 82 230;     /* slightly brighter in dark */
+    --link-hover: 123 63 228;
+  }
+  
+  html, body { overflow-x: clip; }
+  
+  html {
+    color-scheme: light dark;
+    scroll-behavior: smooth;
+    @apply scroll-smooth bg-fixed text-template-white font-primary;
+  }
+  body {
+    @apply bg-bg text-fg; transition: background-color .15s, color .15s;
+  }
+  main {
+    @apply bg-page;
+  }
+  h1 {
+    @apply font-primary;
+  }
+  h2 {
+    @apply font-primary uppercase text-5xl md:text-[64px];
+  }
+  h3 {
+    @apply font-primary uppercase text-4xl md:text-[54px];
+  }
+  h4 {
+    @apply font-primary uppercase text-2xl md:text-3xl;
+  }
+
+  /*:root { scrollbar-gutter: auto; }               /* default: no gutter */
+  /*html.has-scroll { scrollbar-gutter: stable; }   /* only when page truly scrolls */
+  /*html.lock-scroll { scrollbar-gutter: auto; }    /* while menus/modals lock body */
+}
+ 
+
+@keyframes shimmer {
+  0% {
+    background-position: 0% 0%;
+  }
+
+  100% {
+    background-position: 200% 0%;
+  }
+}
+
+/* Wallet Adapter */
+
+.wallet-adapter-modal-wrapper { 
+  @apply !rounded-sm !bg-opacity-90 !uppercase;
+}
+.wallet-adapter-modal-wrapper h1{ 
+  @apply !text-white;
+}
+.wallet-adapter-button { 
+  @apply hover:!bg-opacity-100;
+}
+.wallet-adapter-modal-button-close{
+  @apply !bg-transparent;
+}
+
+/* input auto */
+@layer utilities {
+  .autofill-dark:-webkit-autofill,
+  .autofill-dark:-webkit-autofill:hover,
+  .autofill-dark:-webkit-autofill:focus,
+  .autofill-dark:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 1000px #0f1115 inset; /* your dark bg */
+            box-shadow: 0 0 0 1000px #0f1115 inset;
+    -webkit-text-fill-color: #e5e7eb;               /* text color */
+    caret-color: #e5e7eb;
+    transition: background-color 9999s ease-out 0s; 
+  }
+
+  /* Standard selector (supported in some browsers) */
+  .autofill-dark:autofill {
+    box-shadow: 0 0 0 1000px #0f1115 inset;
+    -webkit-text-fill-color: #e5e7eb;
+    caret-color: #e5e7eb;
+  }
+}
+  
+
+
+
+/*  Layout  */
+
+.row-centered {
+  @apply flex items-center justify-center;
+}
+.row-between {
+  @apply flex items-center justify-between;
+}
+.row-start {
+  @apply flex items-start justify-start;
+}
+.row-evenly {
+  @apply flex items-center justify-evenly;
+}
+.row-around {
+  @apply flex items-center justify-around;
+}
+.col-centered {
+  @apply flex flex-col items-center justify-center;
+}
+.col-start {
+  @apply flex flex-col items-start justify-start;
+}
+.col-evenly {
+  @apply flex flex-col items-center justify-evenly;
+}
+.col-around {
+  @apply flex flex-col items-center justify-around;
+}
+
+/* Animations */
+.transition-1000 {
+  @apply transition-all duration-1000;
+}
+.transition-500 {
+  @apply transition-all duration-500;
+}
+.transition-300 {
+  @apply transition-all duration-300;
+}
+.transition-200 {
+  @apply transition-all duration-200;
+}
+.transition-100 {
+  @apply transition-all duration-100;
+}
