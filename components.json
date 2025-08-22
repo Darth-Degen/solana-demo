@@ -1,0 +1,8 @@
+{
+  "project": "next",
+  "directory": "src/components",
+  "aliases": {
+    "components": "@/components",
+    "utils": "@/lib/utils"
+  }
+}
